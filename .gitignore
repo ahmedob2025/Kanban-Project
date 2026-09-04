@@ -1,0 +1,42 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.sln.docstates
+
+# Build results
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+*.exe
+*.dll
+*.pdb
+*.cache
+
+# Database files (LocalDB)
+*.mdf
+*.ldf
+*.db
+*.sqlite
+
+# NuGet packages (old format)
+packages/
+*.nupkg
+
+# Configuration files with secrets (EXCLUDE, but keep template)
+App.config
+ appsettings.Development.json
+
+# Logs
+*.log
+logs/
+
+# OS junk
+Thumbs.db
+Desktop.ini
+*.tmp
+
+# User-specific files
+*.rsuser
+*.suo
