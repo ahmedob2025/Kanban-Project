@@ -5,6 +5,12 @@ VisualStudioVersion = 17.14.37614.0 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kanban.CommonProject", "Kanban.CommonProject\Kanban.CommonProject.csproj", "{4E868801-F826-4312-BE4E-D855E2EBE1F7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kanban.DAL", "Kanban.DAL\Kanban.DAL.csproj", "{3EDA23D0-918B-4CC2-B965-500162000DC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kanban.BLL", "Kanban.BLL\Kanban.BLL.csproj", "{9A83EA53-EEEE-4C99-9CE5-9D04D964E051}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kanban.PL", "Kanban.PL\Kanban.PL.csproj", "{94BF2B86-86A8-447A-BDA2-B5DDF3D1DBEF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{4E868801-F826-4312-BE4E-D855E2EBE1F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E868801-F826-4312-BE4E-D855E2EBE1F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E868801-F826-4312-BE4E-D855E2EBE1F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EDA23D0-918B-4CC2-B965-500162000DC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EDA23D0-918B-4CC2-B965-500162000DC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EDA23D0-918B-4CC2-B965-500162000DC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EDA23D0-918B-4CC2-B965-500162000DC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A83EA53-EEEE-4C99-9CE5-9D04D964E051}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A83EA53-EEEE-4C99-9CE5-9D04D964E051}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A83EA53-EEEE-4C99-9CE5-9D04D964E051}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A83EA53-EEEE-4C99-9CE5-9D04D964E051}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94BF2B86-86A8-447A-BDA2-B5DDF3D1DBEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94BF2B86-86A8-447A-BDA2-B5DDF3D1DBEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94BF2B86-86A8-447A-BDA2-B5DDF3D1DBEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94BF2B86-86A8-447A-BDA2-B5DDF3D1DBEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
