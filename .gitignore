@@ -1,0 +1,19 @@
+# تجاهل مجلدات الحزم والمخرجات
+bin/
+obj/
+packages/
+*.user
+*.suo
+*.cache
+*.pdb
+*.dll
+*.exe
+
+# تجاهل ملفات الإعدادات الحساسة
+Configuration/ConnectionStrings.config
+
+# تجاهل ملفات الاختبار المؤقتة
+TestResults/
+*.trx
+# Ignore Visual Studio temporary files
+.vs/
