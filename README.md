@@ -838,13 +838,13 @@ git push origin feature/FR-XX-description
 
 ## 📄 الترخيص
 
-هذا المشروع **أكاديمي** - جميع الحقوق محفوظة لفريق التطوير © 2024
+هذا المشروع **أكاديمي** - جميع الحقوق محفوظة لفريق التطوير © 2026
 
 ---
 
 ## 📞 التواصل
 
-- 📧 **Email**: team@kanban-system.local
+- 📧 **Email**: obedatahmad831@gmail.com
 - 🐛 **Issues**: [GitHub Issues](https://github.com/ahmedob2025/Kanban-Project.git)
 - 💬 **Discussions**: [GitHub Discussions](https://github.com/AhmadObeidat/KanbanProjectManagementSystem/discussions)
 
@@ -852,15 +852,6 @@ git push origin feature/FR-XX-description
 
 ## 🏷️ Topics للمستودع
 
-أضف هذه الكلمات المفتاحية من **Settings → Topics**:
-
-```
-csharp  winforms  dotnet  sql-server  kanban  project-management
-3-tier-architecture  desktop-application  visual-studio
-team-project  arabic-interface
-```
-
----
 
 <div align="center">
 
