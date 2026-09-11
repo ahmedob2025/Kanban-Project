@@ -6,10 +6,8 @@ global using System.Windows.Forms;
 global using KanbanProjectManagementSystem.Common;
 global using KanbanProjectManagementSystem.Common.Entities;
 global using KanbanProjectManagementSystem.DataAccessLayer;
-global using KanbanProjectManagementSystem.BusinessLogicLayer;
+global using BusinessLogicLayer;
 
-// Aliases to prevent teammate syntax breaks
+// Aliases
 global using DataAccessLayer = KanbanProjectManagementSystem.DataAccessLayer;
-global using BusinessLogicLayer = KanbanProjectManagementSystem.BusinessLogicLayer;
 global using Common = KanbanProjectManagementSystem.Common;
-nbanProjectManagementSystem.Common;
