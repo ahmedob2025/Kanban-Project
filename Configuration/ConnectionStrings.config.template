@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    ═══════════════════════════════════════════════════════════
+    قالب سلسلة الاتصال بقاعدة البيانات
+    Kanban Project Management System
+    ═══════════════════════════════════════════════════════════
+    
+    ⚠️ ملاحظات مهمة:
+    1. هذا ملف قالب فقط - لا يحتوي على بيانات حقيقية.
+    2. انسخ هذا الملف باسم "App.config" في مجلد المشروع الرئيسي.
+    3. عدّل القيم حسب بيئتك المحلية.
+    4. لا ترفع ملف App.config الحقيقي على GitHub!
+    
+    ═══════════════════════════════════════════════════════════
+-->
+<configuration>
+  
+  <connectionStrings>
+    
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- سلسلة الاتصال الرئيسية بقاعدة البيانات          -->
+    <!-- ═══════════════════════════════════════════════ -->
+    
+    <add name="KanbanDB"
+         connectionString="Server=.;Database=KanbanDB;Integrated Security=True;TrustServerCertificate=True;"
+         providerName="System.Data.SqlClient" />
+    
+  </connectionStrings>
+  
+</configuration>
+
+<!--
+    ═══════════════════════════════════════════════════════════
+    📚 دليل الإعدادات - اقرأ بعناية قبل التعديل
+    ═══════════════════════════════════════════════════════════
+    
+    ┌─────────────────────────────────────────────────────┐
+    │  🖥️  Server  - عنوان السيرفر                        │
+    └─────────────────────────────────────────────────────┘
+    
+    القيم المحتملة:
+    
+    • Server=.                    → السيرفر الافتراضي (LocalDB)
+    • Server=localhost            → نفس الجهاز
+    • Server=(local)              → نفس الجهاز
+    • Server=.\SQLEXPRESS         → SQL Server Express
+    • Server=192.168.1.100        → سيرفر بعيد
+    • Server=.\NAMED_INSTANCE     → نسخة مسماة
+    
+    ┌─────────────────────────────────────────────────────┐
+    │  🗄️  Database  - اسم قاعدة البيانات                 │
+    └─────────────────────────────────────────────────────┘
+    
+    القيمة: KanbanDB (لا تغيّرها إن استخدمت السكربت الرسمي)
+    
+    ┌─────────────────────────────────────────────────────┐
+    │  🔐  Integrated Security  - طريقة المصادقة          │
+    └─────────────────────────────────────────────────────┘
+    
+    الخيارات:
+    
+    ✅ Integrated Security=True     → Windows Authentication (موصى به)
+    ❌ Integrated Security=False    → SQL Authentication
+    
+    عند استخدام SQL Authentication، استبدل السطر كاملاً بـ:
+    User ID=sa;Password=YOUR_PASSWORD;
+    
+    ┌─────────────────────────────────────────────────────┐
+    │  🔒  TrustServerCertificate  - شهادة السيرفر        │
+    └─────────────────────────────────────────────────────┘
+    
+    القيم:
+    
+    ✅ TrustServerCertificate=True   → تجاوز التحقق من الشهادة (للتطوير)
+    ❌ TrustServerCertificate=False  → التحقق الصارم (للإنتاج)
+    
+    
+    ═══════════════════════════════════════════════════════════
+    📌 أمثلة جاهزة لسيناريوهات مختلفة
+    ═══════════════════════════════════════════════════════════
+    
+    ┌─────────────────────────────────────────────────────┐
+    │  1️⃣  SQL Server Express (الأكثر شيوعاً)             │
+    └─────────────────────────────────────────────────────┘
+    
+    <add name="KanbanDB"
+         connectionString="Server=.\SQLEXPRESS;Database=KanbanDB;Integrated Security=True;TrustServerCertificate=True;"
+         providerName="System.Data.SqlClient" />
+    
+    ┌─────────────────────────────────────────────────────┐
+    │  2️⃣  SQL Server الافتراضي على نفس الجهاز           │
+    └─────────────────────────────────────────────────────┘
+    
+    <add name="KanbanDB"
+         connectionString="Server=.;Database=KanbanDB;Integrated Security=True;TrustServerCertificate=True;"
+         providerName="System.Data.SqlClient" />
+    
+    ┌─────────────────────────────────────────────────────┐
+    │  3️⃣  SQL Authentication (sa)                        │
+    └─────────────────────────────────────────────────────┘
+    
+    <add name="KanbanDB"
+         connectionString="Server=.;Database=KanbanDB;User ID=sa;Password=YourPassword123;TrustServerCertificate=True;"
+         providerName="System.Data.SqlClient" />
+    
+    ┌─────────────────────────────────────────────────────┐
+    │  4️⃣  LocalDB (للتطوير السريع)                       │
+    └─────────────────────────────────────────────────────┘
+    
+    <add name="KanbanDB"
+         connectionString="Server=(localdb)\MSSQLLocalDB;Database=KanbanDB;Integrated Security=True;"
+         providerName="System.Data.SqlClient" />
+    
+    ┌─────────────────────────────────────────────────────┐
+    │  5️⃣  سيرفر بعيد على الشبكة                         │
+    └─────────────────────────────────────────────────────┘
+    
+    <add name="KanbanDB"
+         connectionString="Server=192.168.1.100,1433;Database=KanbanDB;User ID=sa;Password=YourPassword123;TrustServerCertificate=True;"
+         providerName="System.Data.SqlClient" />
+    
+    
+    ═══════════════════════════════════════════════════════════
+    🛠️  خطوات الاستخدام
+    ═══════════════════════════════════════════════════════════
+    
+    1. انسخ هذا الملف إلى:  Source Code/PresentationLayer/App.config
+    
+    2. افتح الملف وعدّل Server حسب بيئتك:
+       • Windows Authentication (الأسهل): اترك Integrated Security=True
+       • SQL Authentication: استخدم User ID + Password
+    
+    3. تأكد من أن SQL Server يعمل:
+       • افتح Services.msc
+       • ابحث عن "SQL Server (MSSQLSERVER)" أو "SQL Server (SQLEXPRESS)"
+       • تأكد أن حالته "Running"
+    
+    4. تأكد من إنشاء قاعدة البيانات:
+       • نفّذ سكربت Database/KanbanDB.sql في SSMS
+    
+    5. شغّل التطبيق
+       • سيتصل تلقائياً بقاعدة البيانات
+       • سيتم إنشاء الحسابات الافتراضية
+    
+    
+    ═══════════════════════════════════════════════════════════
+    ⚠️  تحذيرات أمنية
+    ═══════════════════════════════════════════════════════════
+    
+    ❌ لا ترفع ملف App.config الحقيقي على GitHub!
+    ❌ لا تشارك كلمة مرور قاعدة البيانات مع أحد!
+    ❌ لا تستخدم كلمة مرور "sa" في الإنتاج!
+    
+    ✅ استخدم Integrated Security حيث أمكن
+    ✅ استخدم كلمات مرور قوية
+    ✅ خزّن كلمات المرور في متغيرات البيئة في الإنتاج
+    
+    
+    ═══════════════════════════════════════════════════════════
+    📌 الملف الحقيقي App.config مستبعد من Git عبر .gitignore
+    ═══════════════════════════════════════════════════════════
+    
+    لمعرفة المزيد، راجع:
+    • Documentation/SRS.md
+    • Documentation/DatabaseSchema.md
+    • README.md
+    
+    ═══════════════════════════════════════════════════════════
+-->
