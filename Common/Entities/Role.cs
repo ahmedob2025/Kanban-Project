@@ -1,6 +1,8 @@
-﻿namespace Kanban.CommonProject.Entities
+﻿namespace KanbanProjectManagementSystem.Common.Entities
 {
-    internal class Role
+    public class Role
     {
+        public int RoleID { get; set; }
+        public string RoleName { get; set; } = string.Empty;
     }
 }
