@@ -1,6 +1,7 @@
 ﻿using KanbanProjectManagementSystem.DataAccessLayer;
 using KanbanProjectManagementSystem.Common.Entities;
 
+
 namespace BusinessLogicLayer
 {
     /// <summary>
@@ -29,7 +30,7 @@ namespace BusinessLogicLayer
             return (double)summary.done / summary.total * 100;
         }
 
-        public List<(Common.Entities.User user, int completedTasks)> GetTeamPerformance(int projectId)
+       public List<(User user, int completedTasks)> GetTeamPerformance(int projectId)
         {
             return _reportRepository.GetTeamPerformance(projectId);
         }
