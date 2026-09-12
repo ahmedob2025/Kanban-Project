@@ -1,4 +1,5 @@
 ﻿using KanbanProjectManagementSystem.DataAccessLayer;
+using KanbanProjectManagementSystem.Common.Entities;
 
 namespace BusinessLogicLayer
 {
