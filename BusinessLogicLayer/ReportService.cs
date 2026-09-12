@@ -1,12 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using KanbanProjectManagementSystem.DataAccessLayer;
+using KanbanProjectManagementSystem.Common.Entities;
+
 
 namespace BusinessLogicLayer
 {
-    internal class ReportService
+    /// <summary>
+    /// خدمة التقارير.
+    /// تتوافق مع FR-24, FR-25, FR-26.
+    /// </summary>
+    public class ReportService
     {
+        private readonly ReportRepository _reportRepository;
+
+        public ReportService()
+        {
+            _reportRepository = new ReportRepository();
+        }
+
+        public (int total, int newCount, int inProgress, int done) GetProjectSummary(int projectId)
+        {
+            return _reportRepository.GetProjectSummary(projectId);
+        }
+
+        public double GetProjectProgress(int projectId)
+        {
+            var summary = _reportRepository.GetProjectSummary(projectId);
+            if (summary.total == 0)
+                return 0;
+            return (double)summary.done / summary.total * 100;
+        }
+
+       public List<(User user, int completedTasks)> GetTeamPerformance(int projectId)
+        {
+            return _reportRepository.GetTeamPerformance(projectId);
+        }
     }
 }
