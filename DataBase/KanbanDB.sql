@@ -47,6 +47,21 @@ CREATE TABLE Users (
 );
 GO
 
+-- Insert Default Administrator (Username: admin | Password: admin123)
+INSERT INTO Users (Username, FullName, Email, PasswordHash, RoleID, IsActive, CreatedDate) 
+VALUES (
+    'admin', 
+    'System Administrator', 
+    'admin@kanban.local', 
+    'zzyl9/VOnOUX8t7K8wQG1Q==.q+xZOhxHejVjG1QsKQkoGgXIia6Qpk1ABkA+gg8Hlow=', 
+    1, 
+    1, 
+    GETDATE()
+);
+GO
+
+
+
 -- ═══════════════ 3. جدول المشاريع ═══════════════
 CREATE TABLE Projects (
     ProjectID INT PRIMARY KEY IDENTITY(1,1),
