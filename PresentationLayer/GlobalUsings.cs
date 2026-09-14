@@ -11,3 +11,8 @@ global using BusinessLogicLayer;
 // Aliases
 global using DataAccessLayer = KanbanProjectManagementSystem.DataAccessLayer;
 global using Common = KanbanProjectManagementSystem.Common;
+
+
+global using KanbanProjectManagementSystem.PresentationLayer;
+global using KanbanProjectManagementSystem.PresentationLayer.Forms;
+
