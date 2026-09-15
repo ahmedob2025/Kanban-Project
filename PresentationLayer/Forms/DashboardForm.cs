@@ -1,7 +1,4 @@
-﻿
-using KanbanProjectManagementSystem.Common.Entities;
-
-namespace KanbanProjectManagementSystem.PresentationLayer.Forms
+﻿namespace KanbanProjectManagementSystem.PresentationLayer.Forms
 {
     public partial class DashboardForm : Form
     {
@@ -29,7 +26,7 @@ namespace KanbanProjectManagementSystem.PresentationLayer.Forms
 
             btnManageUsers.Visible = isAdmin;
             btnOpenProjects.Visible = isAdmin || isLeader;
-            btnChangeTaskStatus.Visible = isMember;
+            btnChangeTaskStatus.Visible = true;
 
             tabMyTasks.Text = isMember ? "📌  مهامي" : "📌  المهام المسندة إليّ";
 
