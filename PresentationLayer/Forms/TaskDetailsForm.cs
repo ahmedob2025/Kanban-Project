@@ -33,13 +33,24 @@ namespace KanbanProjectManagementSystem.PresentationLayer.Forms
             dgvSubTasks.DataSource = _taskService.GetSubTasks(_taskId);
         }
 
+
         private void btnAddSubTask_Click(object sender, EventArgs e)
         {
             var task = _taskService.GetTaskById(_taskId);
-            if (task == null) return;
+            if (task == null)
+            {
+                MessageBox.Show("المهمة غير موجودة.");
+                return;
+            }
 
-            using var frm = new AddEditTaskForm(task.ProjectID);
-            if (frm.ShowDialog() == DialogResult.OK) LoadTask();
+            // ✅ تمرير parentTaskId
+            using var frm = new AddEditTaskForm(
+                task.ProjectID,           // المشروع
+                taskId: null,             // مهمة جديدة (ليس تعديل)
+                parentTaskId: _taskId);   // ← ✅ المفتاح: تمرير معرف المهمة الأب
+
+            if (frm.ShowDialog() == DialogResult.OK)
+                LoadTask();
         }
 
         private void btnClose_Click(object sender, EventArgs e) => Close();

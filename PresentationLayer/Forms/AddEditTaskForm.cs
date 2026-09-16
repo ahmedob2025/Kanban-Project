@@ -1,24 +1,30 @@
-﻿
-using KanbanProjectManagementSystem.Common.Entities;
-
-namespace KanbanProjectManagementSystem.PresentationLayer.Forms
+﻿namespace KanbanProjectManagementSystem.PresentationLayer.Forms
 {
     public partial class AddEditTaskForm : Form
     {
         private readonly TaskService _taskService = new();
         private readonly ProjectService _projectService = new();
         private readonly int _projectId;
+        private readonly int? _parentTaskId;   // ✅ جديد
         private KanbanTask? _task;
 
-        public AddEditTaskForm(int projectId, int? taskId = null)
+        /// <summary>
+        /// مُنشئ النموذج.
+        /// </summary>
+        /// <param name="projectId">معرف المشروع</param>
+        /// <param name="taskId">معرف المهمة (للتعديل فقط)</param>
+        /// <param name="parentTaskId">معرف المهمة الأب (لإنشاء مهمة فرعية)</param>
+        public AddEditTaskForm(int projectId, int? taskId = null, int? parentTaskId = null)
         {
             try
             {
                 InitializeComponent();
                 _projectId = projectId;
+                _parentTaskId = parentTaskId;   // ✅ حفظ القيمة
 
                 if (taskId.HasValue)
                 {
+                    // وضع التعديل
                     _task = _taskService.GetTaskById(taskId.Value);
                     if (_task == null)
                     {
@@ -29,11 +35,27 @@ namespace KanbanProjectManagementSystem.PresentationLayer.Forms
                         return;
                     }
                     this.Text = "تعديل مهمة";
+                    lblTitle.Text = "✏️ تعديل المهمة";
                 }
                 else
                 {
-                    _task = new KanbanTask { ProjectID = projectId };
-                    this.Text = "إضافة مهمة جديدة";
+                    // وضع الإنشاء (مهمة رئيسية أو فرعية)
+                    _task = new KanbanTask
+                    {
+                        ProjectID = projectId,
+                        ParentTaskID = parentTaskId   // ✅ تعيين ParentTaskID
+                    };
+
+                    if (parentTaskId.HasValue)
+                    {
+                        this.Text = "إضافة مهمة فرعية";
+                        lblTitle.Text = "📄 إضافة مهمة فرعية";
+                    }
+                    else
+                    {
+                        this.Text = "إضافة مهمة جديدة";
+                        lblTitle.Text = "📌 إضافة مهمة رئيسية";
+                    }
                 }
 
                 LoadProjectUsers();
@@ -47,22 +69,13 @@ namespace KanbanProjectManagementSystem.PresentationLayer.Forms
             }
         }
 
-        /// <summary>
-        /// تحميل أعضاء المشروع في ComboBox بأمان تام.
-        /// </summary>
         private void LoadProjectUsers()
         {
             try
             {
-                // حماية: إن كان ComboBox غير مهيأ، لا نكمل
-                if (cmbAssignedTo == null)
-                {
-                    System.Diagnostics.Debug.WriteLine("cmbAssignedTo is null!");
-                    return;
-                }
+                if (cmbAssignedTo == null) return;
 
-                var users = _projectService.GetProjectUsers(_projectId)
-                            ?? new List<User>();
+                var users = _projectService.GetProjectUsers(_projectId) ?? new List<User>();
 
                 cmbAssignedTo.DataSource = null;
                 cmbAssignedTo.Items.Clear();
@@ -88,9 +101,6 @@ namespace KanbanProjectManagementSystem.PresentationLayer.Forms
             }
         }
 
-        /// <summary>
-        /// تعبئة الحقول في وضع التعديل.
-        /// </summary>
         private void LoadTaskData()
         {
             if (_task == null) return;
@@ -101,7 +111,7 @@ namespace KanbanProjectManagementSystem.PresentationLayer.Forms
             if (_task.AssignedTo.HasValue && cmbAssignedTo.Enabled)
             {
                 try { cmbAssignedTo.SelectedValue = _task.AssignedTo.Value; }
-                catch { /* تجاهل */ }
+                catch { }
             }
 
             cmbPriority.SelectedItem = _task.Priority switch
@@ -124,9 +134,6 @@ namespace KanbanProjectManagementSystem.PresentationLayer.Forms
             }
         }
 
-        /// <summary>
-        /// حفظ المهمة.
-        /// </summary>
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
@@ -152,6 +159,10 @@ namespace KanbanProjectManagementSystem.PresentationLayer.Forms
                 _task.Description = string.IsNullOrWhiteSpace(txtDescription.Text)
                     ? null : txtDescription.Text.Trim();
                 _task.ProjectID = _projectId;
+
+                // ✅ تأكيد ParentTaskID
+                if (!_task.TaskID.Equals(0) == false && _parentTaskId.HasValue)
+                    _task.ParentTaskID = _parentTaskId;
 
                 // الإسناد
                 int? assignedUserId = null;
@@ -184,13 +195,15 @@ namespace KanbanProjectManagementSystem.PresentationLayer.Forms
                 if (_task.TaskID == 0)
                 {
                     int newId = _taskService.CreateTask(_task);
-                    MessageBox.Show($"تم إنشاء المهمة بنجاح (رقم: {newId}).",
-                        "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    string msg = _parentTaskId.HasValue
+                        ? $"✅ تم إنشاء المهمة الفرعية (رقم: {newId})."
+                        : $"✅ تم إنشاء المهمة الرئيسية (رقم: {newId}).";
+                    MessageBox.Show(msg, "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
                     _taskService.UpdateTask(_task, SessionManager.CurrentUser.UserID);
-                    MessageBox.Show("تم تحديث المهمة بنجاح.",
+                    MessageBox.Show("✅ تم تحديث المهمة بنجاح.",
                         "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
@@ -203,15 +216,11 @@ namespace KanbanProjectManagementSystem.PresentationLayer.Forms
             }
         }
 
-        /// <summary>
-        /// عرض خطأ تفصيلي.
-        /// </summary>
         private void ShowDetailedError(Exception ex, string title)
         {
             string msg = $"الرسالة: {ex.Message}";
             if (ex.InnerException != null)
                 msg += $"\n\nالتفاصيل: {ex.InnerException.Message}";
-            msg += $"\n\nالنوع: {ex.GetType().Name}";
             msg += $"\n\nالموقع:\n{ex.StackTrace}";
             MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
