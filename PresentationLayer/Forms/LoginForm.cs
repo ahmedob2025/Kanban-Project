@@ -1,20 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿
 
-namespace PresentationLayer.Forms
+namespace KanbanProjectManagementSystem.PresentationLayer.Forms
 {
     public partial class LoginForm : Form
     {
+        private readonly AuthenticationService _authService = new();
+
         public LoginForm()
         {
             InitializeComponent();
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var user = _authService.Login(txtUsername.Text.Trim(), txtPassword.Text);
+                if (user != null)
+                {
+                    SessionManager.CurrentUser = user;
+                    Hide();
+                    new DashboardForm().Show();
+                }
+                else
+                {
+                    MessageBox.Show("بيانات الدخول غير صحيحة أو الحساب معطل.", "خطأ",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"حدث خطأ: {ex.Message}", "خطأ",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
