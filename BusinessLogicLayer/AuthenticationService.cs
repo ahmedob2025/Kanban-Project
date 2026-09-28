@@ -57,7 +57,7 @@ namespace BusinessLogicLayer
 
             byte[] salt = Convert.FromBase64String(parts[0]);
             byte[] expectedHash = Convert.FromBase64String(parts[1]);
-            byte[] actualHash = GenerateHash(password, salt, 10000);
+            byte[] actualHash = GenerateHash(password, salt, 600000);
             return CryptographicOperations.FixedTimeEquals(actualHash, expectedHash);
         }
 
