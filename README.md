@@ -4,7 +4,7 @@
 
 ![الإصدار](https://img.shields.io/badge/الإصدار-1.0.0-blue.svg)
 ![المنصة](https://img.shields.io/badge/المنصة-Windows-lightgrey.svg)
-![.NET](https://img.shields.io/badge/.NET-8.0-purple.svg)
+![.NET](https://img.shields.io/badge/.NET-9.0-purple.svg)
 ![SQL Server](https://img.shields.io/badge/SQL%20Server-2016%2B-red.svg)
 ![الترخيص](https://img.shields.io/badge/الترخيص-أكاديمي-green.svg)
 
