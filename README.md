@@ -195,7 +195,7 @@ KanbanProjectManagementSystem/
 ### 📋 المتطلبات الأساسية
 
 - ✅ **Windows 10/11**
-- ✅ **Visual Studio 2022** (مع .NET 8 SDK)
+- ✅ **Visual Studio 2022** (مع .NET 9 SDK)
 - ✅ **SQL Server 2016** أو أحدث
 - ✅ **SQL Server Management Studio (SSMS)**
 - ✅ **Git**
@@ -205,7 +205,7 @@ KanbanProjectManagementSystem/
 #### 1️⃣ استنساخ المستودع
 
 ```bash
-git https://github.com/ahmedob2025/Kanban-Project.git
+git clone https://github.com/ahmedob2025/Kanban-Project.git
 cd Kanban-Project
 ```
 
